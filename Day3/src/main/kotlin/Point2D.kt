@@ -1,0 +1,1 @@
+data class Point2D(val lat: Int, val lon: Int, val content: String? = null)

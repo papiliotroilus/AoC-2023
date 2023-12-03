@@ -8,16 +8,18 @@ fun main() {
     // Solve both parts
     fun playGame(input: String): Array<Int> {
         val inputString = input.substring(input.indexOf(":") + 2)
-        var redMax = 0 ; var greenMax = 0; var blueMax = 0
         val gameNumber = input.substring(5, input.indexOf(":")).toInt()
-        var quotaExceeded = 0
+
+        var quotaExceeded = false
+        var redMax = 0 ; var greenMax = 0; var blueMax = 0
         val solutions = arrayOf(0, 0)
+
         val draws = inputString.split("; ")
         for (draw in draws) {
-            val groups = draw.split(", ")
-            for (group in groups) {
-                val quantity = group.substring(0, group.indexOf(" ")).toInt()
-                val colour = group.substring(group.indexOf(" ") + 1)
+            val colourGroups = draw.split(", ")
+            for (colourGroup in colourGroups) {
+                val quantity = colourGroup.substring(0, colourGroup.indexOf(" ")).toInt()
+                val colour = colourGroup.substring(colourGroup.indexOf(" ") + 1)
                 var comparator = 0
                 when (colour) {
                     "red" -> {
@@ -34,11 +36,12 @@ fun main() {
                     }
                 }
                 if (quantity > comparator) {
-                    quotaExceeded = 1
+                    quotaExceeded = true
                 }
             }
         }
-        if (quotaExceeded == 0) {
+
+        if (!quotaExceeded) {
             solutions[0] = gameNumber
         }
         val gamePower = redMax * greenMax * blueMax
