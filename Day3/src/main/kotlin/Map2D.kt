@@ -1,10 +1,7 @@
 import kotlin.collections.LinkedHashMap
 
 class Map2D(rows: Int, columns: Int) {
-    // Map contents 2D array
     private var mapContent = arrayOf<CharArray>()
-
-    //  Method for constructing a lava map object
     init {
         mapContent = Array(rows) { CharArray(columns) }
     }
